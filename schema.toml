@@ -1,0 +1,28 @@
+# This is a TOML document
+
+[collections.bookmarks]
+indexes = ["shared_time","user_time"]
+
+[groups.admin]
+[groups.admin.rules.carte_blanche]
+template = "any()"
+
+[groups.default]
+[groups.default.rules.fetch_public_bookmarks]
+template = "collection('bookmarks').findAll({shared: true})"
+
+[groups.authenticated]
+[groups.authenticated.rules.read_current_user]
+template = "collection('users').find({id: userId()})"
+[groups.authenticated.rules.delete_own_bookmarks]
+template = "collection('bookmarks').remove()"
+validator = "(user, oldVal, newVal) => oldVal.user === user.id"
+[groups.authenticated.rules.fetch_own_bookmarks]
+template = "collection('bookmarks').findAll({user: userId()})"
+[groups.authenticated.rules.store_bookmark]
+template = "collection('bookmarks').store({user: userId(), time: any(), shared: any(true, false), bookmark: any()})"
+[groups.authenticated.rules.update_own_bookmarks]
+template = "collection('bookmarks').replace({id: any(), user: userId(), shared: any(true, false), time: any(), bookmark: any()})"
+validator = "(user, oldVal, newVal) => oldVal.user === newVal.user"
+
+

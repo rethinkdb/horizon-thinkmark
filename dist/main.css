@@ -1,0 +1,123 @@
+body {
+  font-family: "Source Sans Pro";
+  margin: 25px;
+}
+h1 {
+  font-weight: normal;
+  color: #777;
+  margin: 0;
+}
+h2 {
+  font-weight: 100;
+  color: #777;
+  font-size: 20px;
+}
+a {
+  text-decoration: none;
+  color: #519d9e;
+}
+a:hover {
+  color: #8fc5c6;
+}
+main {
+  display: flex;
+  flex-direction: row;
+  margin-top: 15px;
+}
+section {
+  flex-grow: 1;
+}
+.login {
+  float: right;
+}
+.login a {
+  margin-right: 25px;
+}
+.new-bookmark {
+  text-transform: uppercase;
+  font-size: 14px;
+}
+.new-bookmark .icon {
+  margin-right: 5px;
+}
+.add-bookmark {
+  background: #f1f2f2;
+  padding: 25px 35px;
+  margin-right: 50px;
+  margin-top: 10px;
+}
+.add-bookmark h2 {
+  margin-top: 0;
+}
+.add-bookmark input,
+.add-bookmark button {
+  font-family: "Source Sans Pro";
+  border: 1px solid #b7b7b7;
+  background-color: #fff;
+  font-weight: 100;
+  padding: 5px;
+}
+.add-bookmark button {
+  padding: 5px 20px;
+  color: #777;
+  margin-top: 5px;
+  font-size: 14px;
+}
+.add-bookmark button i.icon {
+  margin-right: 5px;
+}
+.add-bookmark input {
+  width: 95%;
+  display: block;
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+.bookmark-item {
+  display: flex;
+  margin: 25px 0;
+  align-items: center;
+}
+.bookmark-item .bookmark-link {
+  display: block;
+  margin-top: 5px;
+}
+.bookmark-item .timestamp {
+  color: #929d9e;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+.bookmark-item .timestamp .timestamp-value {
+  color: #474f50;
+}
+.bookmark-item .ion-bookmark {
+  margin-right: 15px;
+  font-size: 32px;
+  color: #c8cece;
+}
+.bookmark-item .bookmark-actions {
+  text-transform: uppercase;
+  font-size: 12px;
+  margin-top: 10px;
+}
+.bookmark-item .bookmark-actions a {
+  color: #6c7778;
+  margin-right: 10px;
+}
+.bookmark-item .bookmark-actions a.bookmark-public {
+  color: #58c9b9;
+}
+.bookmark-item .bookmark-actions a:hover {
+  color: #ec6e7e;
+}
+.bookmark-item .bookmark-actions a .icon {
+  font-size: 14px;
+  vertical-align: text;
+  margin-right: 5px;
+}
+.fade-transition {
+  transition: all 1s ease;
+}
+.fade-enter,
+.fade-leave {
+  opacity: 0;
+}

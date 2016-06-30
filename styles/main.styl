@@ -1,0 +1,132 @@
+
+
+color-grey = darken(#9d9d9d, 15)
+color-selected = #ec6e7e
+color-inactive = #859192
+
+color-headings = #777
+color-links = #519D9E
+
+
+font-global = "Source Sans Pro"
+
+body
+  font-family font-global
+  margin 25px
+  
+h1
+  font-weight normal
+  color color-headings
+  margin 0
+
+h2
+  font-weight 100
+  color color-headings
+  font-size 20px
+  
+a
+  text-decoration none
+  color color-links
+  
+  &:hover
+    color lighten(color-links, 20)
+
+main
+  display flex
+  flex-direction row
+  margin-top 15px
+  
+section
+  flex-grow 1
+  
+.login
+  float right
+  
+  a
+    margin-right 25px
+  
+.new-bookmark
+  text-transform uppercase
+  font-size 14px
+  
+  .icon
+    margin-right 5px
+
+.add-bookmark
+  background lighten(color-inactive, 40)
+  padding 25px 35px
+  margin-right 50px
+  margin-top 10px
+  
+  h2
+    margin-top 0
+
+  input, button
+    font-family font-global
+    border 1px solid lighten(color-grey, 25)
+    background-color white
+    font-weight 100
+    padding 5px 
+    
+  button
+    padding 5px 20px
+    color color-grey
+    margin-top 5px
+    font-size 14px
+    
+    i.icon
+      margin-right 5px
+    
+  input
+    width 95%
+    display block
+    margin-bottom 5px
+    font-size 16px
+
+.bookmark-item
+  display flex
+  margin 25px 0
+  align-items center
+  
+  .bookmark-link
+    display block
+    margin-top 5px
+  
+  .timestamp
+    color lighten(color-inactive, 5) 
+    text-transform uppercase
+    font-size 12px
+    
+    .timestamp-value
+      color darken(color-inactive, 25)
+
+  .ion-bookmark
+    margin-right 15px
+    font-size 32px
+    color lighten(color-inactive, 25)
+    
+  .bookmark-actions
+    text-transform uppercase
+    font-size 12px
+    margin-top 10px
+    
+    a
+      color darken(color-inactive, 10)
+      margin-right 10px
+      
+      &.bookmark-public
+        color #58C9B9
+      
+      &:hover
+        color color-selected
+      
+      .icon
+        font-size 14px
+        vertical-align text
+        margin-right 5px
+        
+.fade-transition
+  transition all 1s ease
+  
+.fade-enter, .fade-leave
+  opacity 0

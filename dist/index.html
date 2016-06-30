@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="/horizon/horizon.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/rxjs/4.1.0/rx.all.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/vue/1.0.24/vue.min.js"></script>
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,700">
+    <link rel="stylesheet" href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="/main.css" type="text/css" />
+  </head>
+  <body style="display: none">
+    
+    <script type="x/template" id="bookmark-item">
+      <div class="bookmark-item">
+        <i class="icon ion-bookmark"></i>
+        
+        <div class="bookmark-content">
+          <div class="timestamp">Bookmark saved <span class="timestamp-value">{{timestamp(bookmark)}}</span></div>
+          <a class="bookmark-link" href="{{bookmark.bookmark.url}}">{{bookmark.bookmark.title}}</a>
+          <div class="bookmark-actions"><slot></slot></div>
+        </div>
+      </div>
+    </script>
+    
+    <div class="login">
+      <a href="#" class="new-bookmark" @click="showBookmarkPrompt" v-if="userId"><i class="icon ion-plus"></i>Add Bookmark</a>
+      <a href="#" v-if="!userId" @click="login">Login with Github to Save Bookmarks&nbsp;<i class="icon ion-arrow-right-c"></i></a>
+      <a href="#" v-if="userId" @click="logout"><i class="icon ion-android-exit"></i>&nbsp;Logout</a>
+    </div>
+    
+    <h1>Bookmark Manager</h1>
+    
+    <main class="bookmarks">
+      <section class="private-bookmarks" v-if="userId">
+        <h2>Your Bookmarks</h2>
+        
+        <div class="add-bookmark" v-if="newBookmark || bookmarks.length == 0">
+          <h2>Add New Bookmark</h2>
+          <input type="text" v-model="newBookmark.url" placeholder="URL" />
+          <input type="text" v-model="newBookmark.title" placeholder="Title" />
+          <button @click="addBookmark"><i class="icon ion-android-add"></i>Add</button>
+          <button @click="cancelBookmark" v-if="newBookmark"><i class="icon ion-android-close"></i>Cancel</button>
+        </div>
+        
+        <div class="add-bookmark" v-if="editingBookmark">
+          <h2>Edit Bookmark</h2>
+          <input type="text" v-model="editingBookmark.bookmark.url" placeholder="URL" />
+          <input type="text" v-model="editingBookmark.bookmark.title" placeholder="Title" />
+          <button @click="updateBookmark"><i class="icon ion-compose"></i>Update</button>
+          <button @click="cancelBookmark"><i class="icon ion-android-close"></i>Cancel</button>
+        </div>
+        
+        <bookmark-item :bookmark="item" v-for="item in bookmarks" track-by="id" transition="fade">
+          <a href="#" @click="edit(item)"><i class="icon ion-compose"></i>Edit</a>
+          <a href="#" @click="remove(item)"><i class="icon ion-trash-b"></i>Delete</a>
+          <a href="#" v-if="item.shared" class="bookmark-public" @click="unshare(item)">
+            <i class="icon ion-checkmark"></i>Shared
+          </a>
+          <a href="#" v-if="!item.shared" class="bookmark-private" @click="share(item)">
+            <i class="icon ion-share"></i>Share
+          </a>
+        </bookmark-item>
+      </section>
+      
+      <section>
+        <h2>Public Bookmarks</h2>
+        <bookmark-item :bookmark="item" v-for="item in publicBookmarks" track-by="id" transition="fade"></bookmark-item>
+      </section>
+    </main>
+    </div>
+    
+    <script type="text/javascript" src="/app.js"></script>
+  </body>
+</html>
